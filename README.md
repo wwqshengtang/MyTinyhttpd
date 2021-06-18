@@ -3,16 +3,16 @@
 
 ## 1. 项目框架图：
 ### 主要代码框架图
-![](assets/16238295673459.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/1.jpg)
 
 ### 程序流程解析图
-![](assets/16238295848291.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/2.jpg)
 
 ### socket 模型创建流程图
-![](assets/16238319455001.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/3.jpg)
 
 ### 管道通信过程
-![](assets/16238319765448.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/4.jpg)
 
 
 ## 2. 主要函数简略说明
@@ -42,24 +42,24 @@
 ## 3. 执行
 在文件目录下执行 make
 
-![](assets/16238496183422.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/5.jpg)
 
 
 运行后在浏览器中输入IP地址和选择的端口号： 127.0.0.1:54289，或10.211.55.4：54289
 则页面为我们编写的 post.html 的内容
 
-![](assets/16238496730781.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/6.jpg)
 
 
 当我们填写这些信息并点击提交后，执行 post.cgi 脚本
 
-![](assets/16238496871139.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/7.jpg)
 
 
 ## 4. 项目分析
 ### http 请求格式： 
 
-![](assets/16238291455097.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/8.jpg)
 http请求由三部分组成，分别是：起始行、消息报头、请求正文
 
 起始行以一个方法符号开头，以空格分开，后面跟着请求的URI和协议的版本，格式如下：
@@ -68,7 +68,7 @@ http请求由三部分组成，分别是：起始行、消息报头、请求正�
 
 其中 Method表示请求方法；Request-URI是一个统一资源标识符；HTTP-Version表示请求的HTTP协议版本；CRLF表示回车和换行（除了作为结尾的CRLF外，不允许出现单独的CR或LF字符）
 
-![](assets/16238325602006.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/9.jpg)
 
 
 请求方法（所有方法全为大写）有多种，各个方法的解释如下：
@@ -81,19 +81,19 @@ http请求由三部分组成，分别是：起始行、消息报头、请求正�
 - CONNECT 保留将来使用
 - OPTIONS 请求查询服务器的性能，或者查询与资源相关的选项和需求
 
-![](assets/16238325160606.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/10.jpg)
 
 > GET方法：在浏览器的地址栏中输入网址的方式访问网页时，浏览器采用GET方法向服务器获取资源
 POST方法要求被请求服务器接受附在请求后面的数据，常用于提交表单
 
 **http头部的 Content-Length：**
 
-![](assets/16238309019906.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/11.jpg)
 
-![](assets/16238428640241.jpg)
-![](assets/16238429032207.jpg)
-![](assets/16238429962735.jpg)
-![](assets/16238430418351.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/12.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/13.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/14.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/15.jpg)
 
 
 ### Web、HTTP 和 CGI 之间的关系
@@ -101,7 +101,7 @@ TinyHTTPd 虽是迷你 Web 服务器程序，代码简短，完整涉及到 HTTP
 Web客户端与服务器之间通过HTTP协议交互，传输层使用TCP协议来进行可靠性传输。（本篇不谈论安全协议，只分析最基本的Web服务框架）
 CGI（Common Gateway Interface），也叫做通用网关接口。CGI是一种标准，它定义了动态文档应如何创建，输入数据应如何提供给应用程序，以及输出结果应如何使用。TinyHTTPd中用 Perl 写了CGI脚本程序，也可以用C/C++ 或 其他脚本语言替代
 
-![](assets/16238318002108.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/16.jpg)
 
 ### 程序部分解读
 对请求头进行处理，得到method、url
@@ -168,13 +168,13 @@ Cgi程序放置在服务器上的一段可执行程序。作为HTTP服务器的�
 ```
 这是静态页面程序，当浏览器端输入服务器地址后，通过get方法发送给服务器，浏览器便可得到此程序，显示界面如下：
 
-![](assets/16238329498561.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/17.jpg)
 
 当填好上述信息后，点击按钮，则将参数通过post方法发送给服务器端的post.cgi程序并运行
 
 **post.cgi程序解读：**
 
-![](assets/16238330583908.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/18.jpg)
 
 Post方法是将提交的数据放在发送报文的主体中，因此需要通过recv()函数获取，并通过write()函数管道通信给cgi程序中；而后cgi将上述的html程序通过管道通信给父进程，再通过send()函数形成发送报文的正文部分发送给浏览器
 
@@ -189,18 +189,18 @@ Post方法是将提交的数据放在发送报文的主体中，因此需要通�
 8. 在子进程中，把 stdout 重定向到 cgi_output的写入端，把 stdin 重定向到 cgi_input 的读取端，关闭 cgi_input 的写入端和 cgi_output 的读取端。设置 REQUEST_METHOD 的环境变量，GET 的话设置 QUERY_STRING 的环境变量，POST 的话设置 CONTENT_LENGTH 的环境变量，这些环境变量都是为了给 cgi脚本使用，接着用 execl 运行cgi程序，
 9. 在父进程中，关闭 cgi_input 的读取端和 cgi_output 的写入端，如果是 POST 的话，把 POST 数据写入 cgi_input，已被重定向到 stdin，读取 cgi_output 的管道输出到客户端，该管道输出是 stdout，接着关闭所有管道，等待子进程结束，
    
-   ![](assets/16238423158208.jpg)
+   ![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/19.jpg)
 
 
 10. 关闭与浏览器的连接，完成了一次 HTTP请求与回应，因为 HTTP 是无连接的，
 
 
 ### 进程和线程
-![](assets/16238432072580.jpg)
-![](assets/16238434443926.jpg)
-![](assets/16238436506436.jpg)
-![](assets/16238439030909.jpg)
-![](assets/16238439190827.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/20.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/21.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/22.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/23.jpg)
+![](https://github.com/wwqshengtang/MyTinyhttpd/blob/main/image/24.jpg)
 
 
 
